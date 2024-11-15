@@ -11,13 +11,17 @@ dotnet new xunit --language "F#" --name "Tests" --framework "net8.0" --output te
 dotnet add .\tests\tests.fsproj reference .\src\App.fsproj
 # Save workspace.
 # Setup formatting.
+# Add to `settings.json`:
+#     "search.exclude": {
+#         "docs": true
+#     }
 # Edit `.gitignore`
 #     Add Fable gererated files.
-#
 npm init -y
 # Edit package.json
 #     Add scripts.
-#
+#        "start": "dotnet fable watch src --run npx vite",
+#        "build": "dotnet fable src --run npx vite build"
 #     Set author and license.
 #     Add `"private": true`.
 npm install --save-dev vite
