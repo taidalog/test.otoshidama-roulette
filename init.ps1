@@ -17,6 +17,11 @@ dotnet add .\tests\tests.fsproj reference .\src\App.fsproj
 #     }
 # Edit `.gitignore`
 #     Add Fable gererated files.
+#     Fable generated files
+#     .fable
+#     *.fs.js
+#     bundle.js
+#     temp/**
 npm init -y
 # Edit package.json
 #     Add scripts.
