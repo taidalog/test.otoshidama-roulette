@@ -16,6 +16,11 @@ open JsNative
 open RunningState
 
 module Roulette =
+    let randomRadix () : string =
+        List.item (Random.lessThan 3) [ "₍₂₎"; "₍₁₀₎"; "₍₁₆₎" ]
+
+    let randomByte () : string = Random.lessThan 2 |> string
+
     let display (value: string) (radix: string) : unit =
         value
         |> Seq.rev
@@ -24,15 +29,6 @@ module Roulette =
         (document.getElementById "radix").innerText <- radix
 
     let turn (f: unit -> string) (element: HTMLElement) : unit = element.innerText <- f ()
-
-    let randomBinary (lessThan: int) : string =
-        let n = Random.lessThan lessThan
-        Convert.ToString(n, 2) |> String.padLeft 11 '0'
-
-    let randomRadix () : string =
-        List.item (Random.lessThan 3) [ "₍₂₎"; "₍₁₀₎"; "₍₁₆₎" ]
-
-    let randomByte () : string = Random.lessThan 2 |> string
 
     let start () : RunningState =
         let n = Random.lessThan 2026
@@ -67,7 +63,7 @@ module Roulette =
         (document.getElementById "button" :?> HTMLButtonElement).innerText <- "Stop"
         RunningState.Running(intervalIds, values, ids)
 
-    let rec toggle runningState =
+    let rec toggle runningState : unit =
         let button = document.getElementById "button" :?> HTMLButtonElement
 
         match runningState with
