@@ -1,4 +1,4 @@
-// otoshidama-radix Version 0.1.0
+// otoshidama-radix Version 0.2.0
 // https://github.com/taidalog/otoshidama-radix
 // Copyright (c) 2023-2024 taidalog
 // This software is licensed under the MIT License.
