@@ -20,6 +20,7 @@ html {
 body {
     display: flex;
     flex-direction: column;
+    background-image: url(image/checker.svg);
 }
 
 h1 {
