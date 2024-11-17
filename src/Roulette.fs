@@ -30,6 +30,8 @@ module Roulette =
     let randomRadix () : string =
         List.item (Random.between 0 3) [ "₍₂₎"; "₍₁₀₎"; "₍₁₆₎" ]
 
+    let randomByte () : string = Random.lessThan 2 |> string
+
     let start () : RunningState =
         let n = Random.lessThan 2026
         let b = Convert.ToString(n, 2) |> String.padLeft 11 '0'
@@ -53,8 +55,7 @@ module Roulette =
               "radix" ]
 
         let generators: (unit -> string) list =
-            randomRadix :: (List.replicate 11 (fun _ -> Random.between 0 2 |> string))
-            |> List.rev
+            randomRadix :: (List.replicate 11 randomByte) |> List.rev
 
         let intervalIds: int list =
             ids
