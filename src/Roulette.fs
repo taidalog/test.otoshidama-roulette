@@ -30,14 +30,14 @@ module Roulette =
         Convert.ToString(n, 2) |> String.padLeft 11 '0'
 
     let randomRadix () : string =
-        List.item (Random.between 0 3) [ "₍₂₎"; "₍₁₀₎"; "₍₁₆₎" ]
+        List.item (Random.lessThan 3) [ "₍₂₎"; "₍₁₀₎"; "₍₁₆₎" ]
 
     let randomByte () : string = Random.lessThan 2 |> string
 
     let start () : RunningState =
         let n = Random.lessThan 2026
         let b = Convert.ToString(n, 2) |> String.padLeft 11 '0'
-        let radix = List.item (Random.between 0 3) [ "₍₂₎"; "₍₁₀₎"; "₍₁₆₎" ]
+        let radix = randomRadix ()
         Debug.WriteLine $"%d{n}%s{radix}"
 
         let values: string list = radix :: (b |> Seq.toList |> List.map string) |> List.rev

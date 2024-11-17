@@ -12,6 +12,10 @@ module Random =
         let rand = new Random()
         rand.Next()
 
+    let nextDouble () : float =
+        let rand = new Random()
+        rand.NextDouble()
+
     let lessThan (x: int) : int =
         let rand = new Random()
         rand.Next(x)
