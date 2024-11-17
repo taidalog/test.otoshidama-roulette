@@ -1,45 +1,19 @@
-﻿// otoshidama-radix Version 0.1.0
+﻿// otoshidama-radix Version 0.2.0
 // https://github.com/taidalog/otoshidama-radix
 // Copyright (c) 2023-2024 taidalog
 // This software is licensed under the MIT License.
 // https://github.com/taidalog/otoshidama-radix/blob/main/LICENSE
+namespace OtoshidamaRadix
 
 open System
 open Browser.Dom
 open Browser.Types
 open Fable.Core
 open Fable.Core.JsInterop
-open Fermata
+open RunningState
+open Roulette
 
 module App =
-    let random () : int =
-        let rand = new Random()
-        rand.Next()
-
-    let randomLessThan (x: int) : int =
-        let rand = new Random()
-        rand.Next(x)
-
-    let randomBetween (x: int) (y: int) : int =
-        let rand = new Random()
-        rand.Next(x, y)
-
-    let start () : unit =
-        let outputArea = document.getElementById "outputArea"
-        let n = randomLessThan 2026
-        let b = Convert.ToString(n, 2) |> String.padLeft 11 '0'
-        printfn "%d" n
-        // outputArea.innerText <- $"%s{b}₍₂₎"
-        b
-        |> Seq.rev
-        |> Seq.iteri (fun i x -> (document.getElementById $"digit%d{i + 1}").innerText <- string x)
-
-        (document.getElementById "radix").innerText <- List.item (randomBetween 0 3) [ "₍₂₎"; "₍₁₀₎"; "₍₁₆₎" ]
-
-    let stop () : unit =
-        let outputArea = document.getElementById "outputArea"
-        outputArea.innerText <- "stopped"
-
     let keyboardshortcut (e: KeyboardEvent) : unit =
         let helpWindow = document.getElementById "helpWindow"
 
@@ -60,10 +34,6 @@ module App =
 
             if isInformationPolicyWindowActive then
                 informationPolicyWindow.classList.remove "active"
-
-            if not isHelpWindowActive && not isInformationPolicyWindowActive then
-                stop ()
-        | "Enter" -> start ()
         | "?" ->
             if not isHelpWindowActive then
                 helpWindow.classList.add "active"
@@ -72,9 +42,10 @@ module App =
     window.addEventListener (
         "DOMContentLoaded",
         (fun _ ->
-            (document.getElementById "button" :?> HTMLButtonElement).innerText <- "Start"
+            Roulette.display "00000000000" "₍₂₎"
 
-            start ()
+            let button = document.getElementById "button" :?> HTMLButtonElement
+            button.innerText <- "Start"
 
             // help window
             [ "helpButton"; "helpClose" ]
@@ -94,5 +65,5 @@ module App =
             // keyboard shortcut
             document.onkeydown <- fun (e: KeyboardEvent) -> keyboardshortcut e
 
-            (document.getElementById "button" :?> HTMLButtonElement).onclick <- fun _ -> start ())
+            button.onclick <- fun _ -> Roulette.toggle RunningState.Stopping)
     )

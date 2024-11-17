@@ -67,6 +67,17 @@ output.output-area {
     gap: 0;
 }
 
+output>span.radix {
+    display: flex;
+    align-items: flex-end;
+    font-size: 4vw;
+    width: 2ch;
+}
+
+output>span:not(.fixed) {
+    color: #999999;
+}
+
 div.button-container {
     display: flex;
     justify-content: center;
