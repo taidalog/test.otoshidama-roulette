@@ -8,4 +8,4 @@ namespace OtoshidamaRadix
 module RunningState =
     type RunningState =
         | Stopping
-        | Running of int * string * string
+        | Running of int list * string list * string list

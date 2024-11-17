@@ -21,6 +21,8 @@ module Roulette =
 
         (document.getElementById "radix").innerText <- radix
 
+    let turn (f: unit -> string) (element: HTMLElement) : unit = element.innerText <- f ()
+
     let randomBinary (lessThan: int) : string =
         let n = Random.lessThan lessThan
         Convert.ToString(n, 2) |> String.padLeft 11 '0'
@@ -28,11 +30,11 @@ module Roulette =
     let randomRadix () : string =
         List.item (Random.between 0 3) [ "₍₂₎"; "₍₁₀₎"; "₍₁₆₎" ]
 
-    let stop (intervalId: int) (value: string) (radix: string) : RunningState =
-        clearInterval intervalId
-        f value radix
-        (document.getElementById "button" :?> HTMLButtonElement).innerText <- "Start"
-        RunningState.Stopping
+    // let stop (intervalId: int) (value: string) (radix: string) : RunningState =
+    //     clearInterval intervalId
+    //     f value radix
+    //     (document.getElementById "button" :?> HTMLButtonElement).innerText <- "Start"
+    //     RunningState.Stopping
 
     let start () : RunningState =
         let n = Random.lessThan 2026
@@ -40,15 +42,54 @@ module Roulette =
         let radix = List.item (Random.between 0 3) [ "₍₂₎"; "₍₁₀₎"; "₍₁₆₎" ]
         Debug.WriteLine $"%d{n}%s{radix}"
 
-        let intervalId = setInterval (fun _ -> f (randomBinary 2026) (randomRadix ())) 25
+        let values: string list = radix :: (b |> Seq.toList |> List.map string) |> List.rev
+
+        let ids: string list =
+            [ "digit1"
+              "digit2"
+              "digit3"
+              "digit4"
+              "digit5"
+              "digit6"
+              "digit7"
+              "digit8"
+              "digit9"
+              "digit10"
+              "digit11"
+              "radix" ]
+
+        let generators: (unit -> string) list =
+            randomRadix :: (List.replicate 11 (fun _ -> Random.between 0 2 |> string))
+            |> List.rev
+
+        let intervalIds: int list =
+            ids
+            |> List.map (fun x -> document.getElementById x)
+            |> List.map2 (fun g e -> setInterval (fun _ -> turn g e) 250) generators
+
+        // let intervalIds' =
+        //     (setInterval (fun _ -> turn (fun _ -> randomRadix ()) (document.getElementById "radix")) 250)
+        //     :: intervalIds
+        //     |> List.rev
+
         (document.getElementById "button" :?> HTMLButtonElement).innerText <- "Stop"
-        RunningState.Running(intervalId, b, radix)
+        RunningState.Running(intervalIds, values, ids)
 
     let rec toggle runningState =
+        let button = document.getElementById "button" :?> HTMLButtonElement
+
         match runningState with
-        | RunningState.Stopping ->
-            let x = start ()
-            (document.getElementById "button" :?> HTMLButtonElement).onclick <- fun _ -> toggle x
-        | RunningState.Running(intervalId, b, radix) ->
-            let x = stop intervalId b radix
-            (document.getElementById "button" :?> HTMLButtonElement).onclick <- fun _ -> toggle x
+        | RunningState.Stopping -> start () |> fun x -> button.onclick <- fun _ -> toggle x
+        | RunningState.Running(intervalIds, values, ids) ->
+            match intervalIds with
+            | h :: t ->
+                clearInterval h
+                (document.getElementById (List.head ids)).innerText <- List.head values
+
+                match t with
+                | [] ->
+                    button.onclick <- fun _ -> toggle RunningState.Stopping
+                    button.innerText <- "Start"
+                | _ -> button.onclick <- fun _ -> toggle (RunningState.Running(t, List.tail values, List.tail ids))
+
+            | [] -> ()
