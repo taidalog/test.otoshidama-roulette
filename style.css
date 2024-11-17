@@ -76,13 +76,10 @@ footer {
     width: 90%;
     margin: 20px auto;
     margin-top: 40px;
-}
-
-footer>div {
-    margin: 10px 0;
     display: flex;
-    flex-direction: row;
-    justify-content: space-around;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.5rem 1.5rem;
 }
 
 footer a {
@@ -94,21 +91,17 @@ footer a:visited {
     color: #754488;
 }
 
-@media (max-width: 799px) {
+/* @media (max-width: 799px) {
     footer {
         margin-top: 20px;
-    }
-
-    footer>div {
-        width: 100%;
-        margin: 0 auto;
         flex-direction: column;
     }
 
-    footer>div>div {
-        margin: 0 auto;
+    footer>small {
+        display: inline-block;
+        text-align: center;
     }
-}
+} */
 
 /*
     help window
