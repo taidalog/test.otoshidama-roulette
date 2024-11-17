@@ -45,7 +45,7 @@ module App =
             Roulette.display "00000000000" "₍₂₎"
 
             let button = document.getElementById "button" :?> HTMLButtonElement
-            button.innerText <- "Start"
+            button.innerText <- "始"
 
             // help window
             [ "helpButton"; "helpClose" ]

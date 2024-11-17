@@ -60,7 +60,7 @@ module Roulette =
             |> List.map (fun x -> document.getElementById x)
             |> List.map2 (fun g e -> setInterval (fun _ -> turn g e) 100) generators
 
-        (document.getElementById "button" :?> HTMLButtonElement).innerText <- "Stop"
+        (document.getElementById "button" :?> HTMLButtonElement).innerText <- "止"
         RunningState.Running(intervalIds, values, ids)
 
     let rec toggle runningState : unit =
@@ -87,5 +87,5 @@ module Roulette =
                 match t with
                 | [] ->
                     button.onclick <- fun _ -> toggle RunningState.Stopping
-                    button.innerText <- "Start"
+                    button.innerText <- "始"
                 | _ -> button.onclick <- fun _ -> toggle (RunningState.Running(t, List.tail values, List.tail ids))
