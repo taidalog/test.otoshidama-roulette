@@ -9,6 +9,8 @@ open System
 open System.Diagnostics
 open Browser.Dom
 open Browser.Types
+open Fable.Core
+open Fable.Core.JsInterop
 open Fermata
 open JsNative
 open RunningState
@@ -69,13 +71,22 @@ module Roulette =
         let button = document.getElementById "button" :?> HTMLButtonElement
 
         match runningState with
-        | RunningState.Stopping -> start () |> fun x -> button.onclick <- fun _ -> toggle x
+        | RunningState.Stopping ->
+            let outputArea = document.getElementById "outputArea"
+
+            outputArea.children
+            |> JS.Constructors.Array?from
+            |> Array.iter (fun (x: HTMLElement) -> x.classList.remove "fixed")
+
+            start () |> fun x -> button.onclick <- fun _ -> toggle x
         | RunningState.Running(intervalIds, values, ids) ->
             match intervalIds with
             | [] -> ()
             | h :: t ->
                 clearInterval h
-                (document.getElementById (List.head ids)).innerText <- List.head values
+                let element = document.getElementById (List.head ids)
+                element.innerText <- List.head values
+                element.classList.add "fixed"
 
                 match t with
                 | [] ->
