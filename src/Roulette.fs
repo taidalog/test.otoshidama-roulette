@@ -30,12 +30,6 @@ module Roulette =
     let randomRadix () : string =
         List.item (Random.between 0 3) [ "₍₂₎"; "₍₁₀₎"; "₍₁₆₎" ]
 
-    // let stop (intervalId: int) (value: string) (radix: string) : RunningState =
-    //     clearInterval intervalId
-    //     f value radix
-    //     (document.getElementById "button" :?> HTMLButtonElement).innerText <- "Start"
-    //     RunningState.Stopping
-
     let start () : RunningState =
         let n = Random.lessThan 2026
         let b = Convert.ToString(n, 2) |> String.padLeft 11 '0'
@@ -65,12 +59,7 @@ module Roulette =
         let intervalIds: int list =
             ids
             |> List.map (fun x -> document.getElementById x)
-            |> List.map2 (fun g e -> setInterval (fun _ -> turn g e) 250) generators
-
-        // let intervalIds' =
-        //     (setInterval (fun _ -> turn (fun _ -> randomRadix ()) (document.getElementById "radix")) 250)
-        //     :: intervalIds
-        //     |> List.rev
+            |> List.map2 (fun g e -> setInterval (fun _ -> turn g e) 100) generators
 
         (document.getElementById "button" :?> HTMLButtonElement).innerText <- "Stop"
         RunningState.Running(intervalIds, values, ids)
@@ -82,6 +71,7 @@ module Roulette =
         | RunningState.Stopping -> start () |> fun x -> button.onclick <- fun _ -> toggle x
         | RunningState.Running(intervalIds, values, ids) ->
             match intervalIds with
+            | [] -> ()
             | h :: t ->
                 clearInterval h
                 (document.getElementById (List.head ids)).innerText <- List.head values
@@ -91,5 +81,3 @@ module Roulette =
                     button.onclick <- fun _ -> toggle RunningState.Stopping
                     button.innerText <- "Start"
                 | _ -> button.onclick <- fun _ -> toggle (RunningState.Running(t, List.tail values, List.tail ids))
-
-            | [] -> ()
