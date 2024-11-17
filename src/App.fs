@@ -47,6 +47,9 @@ module App =
             let button = document.getElementById "button" :?> HTMLButtonElement
             button.innerText <- "始"
 
+            let message = document.getElementById "message"
+            message.innerText <- "お年玉ルーレット！"
+
             // help window
             [ "helpButton"; "helpClose" ]
             |> List.iter (fun x ->
