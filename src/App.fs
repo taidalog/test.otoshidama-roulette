@@ -16,27 +16,25 @@ module App =
         let rand = new Random()
         rand.Next()
 
-    let randomLessThan x : int =
+    let randomLessThan (x: int) : int =
         let rand = new Random()
         rand.Next(x)
 
-    let randomBetween x y : int =
+    let randomBetween (x: int) (y: int) : int =
         let rand = new Random()
         rand.Next(x, y)
 
-    let start () =
+    let start () : unit =
         let outputArea = document.getElementById "outputArea"
         let n = randomLessThan 2026
         let b = Convert.ToString(n, 2) |> String.padLeft 11 '0'
         outputArea.innerText <- $"%s{b}₍₂₎"
 
-    let stop' x =
+    let stop () : unit =
         let outputArea = document.getElementById "outputArea"
-        outputArea.innerText <- x
+        outputArea.innerText <- "stopped"
 
-    let stop () = stop' "hey"
-
-    let keyboardshortcut (e: KeyboardEvent) =
+    let keyboardshortcut (e: KeyboardEvent) : unit =
         let helpWindow = document.getElementById "helpWindow"
 
         let isHelpWindowActive =
