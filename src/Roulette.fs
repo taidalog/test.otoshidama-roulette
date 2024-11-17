@@ -14,7 +14,7 @@ open JsNative
 open RunningState
 
 module Roulette =
-    let f (value: string) (radix: string) : unit =
+    let display (value: string) (radix: string) : unit =
         value
         |> Seq.rev
         |> Seq.iteri (fun i x -> (document.getElementById $"digit%d{i + 1}").innerText <- string x)

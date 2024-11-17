@@ -42,8 +42,7 @@ module App =
     window.addEventListener (
         "DOMContentLoaded",
         (fun _ ->
-            Seq.replicate 11 '0'
-            |> Seq.iteri (fun i x -> (document.getElementById $"digit%d{i + 1}").innerText <- string x)
+            Roulette.display "00000000000" "₍₂₎"
 
             let button = document.getElementById "button" :?> HTMLButtonElement
             button.innerText <- "Start"
