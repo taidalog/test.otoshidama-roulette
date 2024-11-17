@@ -3,6 +3,7 @@
 // Copyright (c) 2023-2024 taidalog
 // This software is licensed under the MIT License.
 // https://github.com/taidalog/otoshidama-radix/blob/main/LICENSE
+namespace OtoshidamaRadix
 
 open System
 open Browser.Dom
@@ -10,23 +11,12 @@ open Browser.Types
 open Fable.Core
 open Fable.Core.JsInterop
 open Fermata
+open Random
 
 module App =
-    let random () : int =
-        let rand = new Random()
-        rand.Next()
-
-    let randomLessThan (x: int) : int =
-        let rand = new Random()
-        rand.Next(x)
-
-    let randomBetween (x: int) (y: int) : int =
-        let rand = new Random()
-        rand.Next(x, y)
-
     let start () : unit =
         let outputArea = document.getElementById "outputArea"
-        let n = randomLessThan 2026
+        let n = Random.lessThan 2026
         let b = Convert.ToString(n, 2) |> String.padLeft 11 '0'
         printfn "%d" n
         // outputArea.innerText <- $"%s{b}₍₂₎"
@@ -34,7 +24,7 @@ module App =
         |> Seq.rev
         |> Seq.iteri (fun i x -> (document.getElementById $"digit%d{i + 1}").innerText <- string x)
 
-        (document.getElementById "radix").innerText <- List.item (randomBetween 0 3) [ "₍₂₎"; "₍₁₀₎"; "₍₁₆₎" ]
+        (document.getElementById "radix").innerText <- List.item (Random.between 0 3) [ "₍₂₎"; "₍₁₀₎"; "₍₁₆₎" ]
 
     let stop () : unit =
         let outputArea = document.getElementById "outputArea"
