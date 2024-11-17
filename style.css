@@ -61,9 +61,10 @@ output.output-area {
     font-family: "Yuji Syuku", serif;
     font-weight: 400;
     font-style: normal;
-    font-size: 7vw;
-    display: block;
-    text-align: center;
+    font-size: 8vw;
+    display: flex;
+    justify-content: center;
+    gap: 0;
 }
 
 div.button-container {

@@ -28,7 +28,13 @@ module App =
         let outputArea = document.getElementById "outputArea"
         let n = randomLessThan 2026
         let b = Convert.ToString(n, 2) |> String.padLeft 11 '0'
-        outputArea.innerText <- $"%s{b}₍₂₎"
+        printfn "%d" n
+        // outputArea.innerText <- $"%s{b}₍₂₎"
+        b
+        |> Seq.rev
+        |> Seq.iteri (fun i x -> (document.getElementById $"digit%d{i + 1}").innerText <- string x)
+
+        (document.getElementById "radix").innerText <- List.item (randomBetween 0 3) [ "₍₂₎"; "₍₁₀₎"; "₍₁₆₎" ]
 
     let stop () : unit =
         let outputArea = document.getElementById "outputArea"
