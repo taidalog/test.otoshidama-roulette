@@ -10,26 +10,10 @@ open Browser.Dom
 open Browser.Types
 open Fable.Core
 open Fable.Core.JsInterop
-open Fermata
-open Random
+open RunningState
+open Roulette
 
 module App =
-    let start () : unit =
-        let outputArea = document.getElementById "outputArea"
-        let n = Random.lessThan 2026
-        let b = Convert.ToString(n, 2) |> String.padLeft 11 '0'
-        printfn "%d" n
-        // outputArea.innerText <- $"%s{b}₍₂₎"
-        b
-        |> Seq.rev
-        |> Seq.iteri (fun i x -> (document.getElementById $"digit%d{i + 1}").innerText <- string x)
-
-        (document.getElementById "radix").innerText <- List.item (Random.between 0 3) [ "₍₂₎"; "₍₁₀₎"; "₍₁₆₎" ]
-
-    let stop () : unit =
-        let outputArea = document.getElementById "outputArea"
-        outputArea.innerText <- "stopped"
-
     let keyboardshortcut (e: KeyboardEvent) : unit =
         let helpWindow = document.getElementById "helpWindow"
 
@@ -50,10 +34,6 @@ module App =
 
             if isInformationPolicyWindowActive then
                 informationPolicyWindow.classList.remove "active"
-
-            if not isHelpWindowActive && not isInformationPolicyWindowActive then
-                stop ()
-        | "Enter" -> start ()
         | "?" ->
             if not isHelpWindowActive then
                 helpWindow.classList.add "active"
@@ -62,9 +42,11 @@ module App =
     window.addEventListener (
         "DOMContentLoaded",
         (fun _ ->
-            (document.getElementById "button" :?> HTMLButtonElement).innerText <- "Start"
+            Seq.replicate 11 '0'
+            |> Seq.iteri (fun i x -> (document.getElementById $"digit%d{i + 1}").innerText <- string x)
 
-            start ()
+            let button = document.getElementById "button" :?> HTMLButtonElement
+            button.innerText <- "Start"
 
             // help window
             [ "helpButton"; "helpClose" ]
@@ -84,5 +66,5 @@ module App =
             // keyboard shortcut
             document.onkeydown <- fun (e: KeyboardEvent) -> keyboardshortcut e
 
-            (document.getElementById "button" :?> HTMLButtonElement).onclick <- fun _ -> start ())
+            button.onclick <- fun _ -> Roulette.toggle RunningState.Stopping)
     )
