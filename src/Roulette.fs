@@ -118,6 +118,10 @@ module Roulette =
             |> JS.Constructors.Array?from
             |> Array.iter (fun (x: HTMLElement) -> x.classList.remove "fixed")
 
+            let audio = document.getElementById "koto" :?> HTMLAudioElement
+            audio.currentTime <- 0
+            audio.play ()
+
             start () |> fun x -> button.onclick <- fun _ -> toggle x
         | RunningState.Running(intervalIds, values, ids, amount, bin, radix) ->
 
@@ -139,6 +143,20 @@ module Roulette =
                             $"%d{amount}₍₁₀₎"
                         else
                             $"%s{bin}%s{radix} = %d{amount}₍₁₀₎"
+
+                    let audio = document.getElementById "shakuhachi" :?> HTMLAudioElement
+                    audio.currentTime <- 0
+                    audio.play ()
                 | _ ->
                     button.onclick <-
+                        if List.length values > 5 then
+                            let audio = document.getElementById "kodutsumi" :?> HTMLAudioElement
+                            audio.currentTime <- 0
+                            audio.play ()
+                        else
+                            let audio = document.getElementById "hyoushigi" :?> HTMLAudioElement
+                            audio.currentTime <- 0
+                            audio.volume <- 0.25
+                            audio.play ()
+
                         fun _ -> toggle (RunningState.Running(t, List.tail values, List.tail ids, amount, bin, radix))
