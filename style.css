@@ -41,6 +41,10 @@ footer {
     margin: 0 auto;
 }
 
+main {
+    width: 100%;
+}
+
 header {
     height: 50px;
     margin: auto;
@@ -97,6 +101,24 @@ button {
     font-style: normal;
     font-size: 3rem;
     cursor: pointer;
+}
+
+div.lines {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+div.lines>svg>g>polyline {
+    stroke-width: 2.5;
+}
+
+div.lines.left>svg>g>polyline {
+    stroke: #968a8a;
+}
+
+div.lines.right>svg>g>polyline {
+    stroke: #ab173a;
 }
 
 div.message {

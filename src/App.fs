@@ -39,6 +39,16 @@ module App =
                 helpWindow.classList.add "active"
         | _ -> ()
 
+    let shrinkLines (width: float) (svg: Element) : unit =
+        svg.setAttribute ("viewBox", $"0 0 %f{width} 17")
+        svg.setAttribute ("width", $"%f{width}px")
+        svg.setAttribute ("height", "17px")
+
+        svg.querySelector "g"
+        |> _.querySelectorAll("polyline")
+        |> JS.Constructors.Array?from
+        |> Array.iteri (fun i (x: Element) -> x.setAttribute ("points", $"""0,%d{i * 6 + 3} %f{width},%d{i * 6 + 3}"""))
+
     window.addEventListener (
         "DOMContentLoaded",
         (fun _ ->
@@ -46,6 +56,32 @@ module App =
 
             let button = document.getElementById "button" :?> HTMLButtonElement
             button.innerText <- "始"
+
+            let width = (window.screen.width - 100.) / 2.
+
+            let linesLeft = document.getElementById "linesLeft" :?> HTMLDivElement
+            let svgLeft = document.createElementNS ("http://www.w3.org/2000/svg", "svg")
+            let gLeft = document.createElementNS ("http://www.w3.org/2000/svg", "g")
+
+            List.init 3 (fun _ -> document.createElementNS ("http://www.w3.org/2000/svg", "polyline"))
+            |> List.iter (fun x -> gLeft.appendChild x |> ignore)
+
+            svgLeft.appendChild gLeft |> ignore
+            linesLeft.appendChild svgLeft |> ignore
+
+            shrinkLines width svgLeft
+
+            let linesRight = document.getElementById "linesRight" :?> HTMLDivElement
+            let svgRight = document.createElementNS ("http://www.w3.org/2000/svg", "svg")
+            let gRight = document.createElementNS ("http://www.w3.org/2000/svg", "g")
+
+            List.init 3 (fun _ -> document.createElementNS ("http://www.w3.org/2000/svg", "polyline"))
+            |> List.iter (fun x -> gRight.appendChild x |> ignore)
+
+            svgRight.appendChild gRight |> ignore
+            linesRight.appendChild svgRight |> ignore
+
+            shrinkLines width svgRight
 
             let message = document.getElementById "message"
             message.innerText <- "お年玉ルーレット！"
@@ -69,4 +105,12 @@ module App =
             document.onkeydown <- fun (e: KeyboardEvent) -> keyboardshortcut e
 
             button.onclick <- fun _ -> Roulette.toggle RunningState.Stopping)
+    )
+
+    window.addEventListener (
+        "resize",
+        (fun _ ->
+            let width = (window.screen.width - 100.) / 2.
+            (document.getElementById "linesLeft").querySelector "svg" |> shrinkLines width
+            (document.getElementById "linesRight").querySelector "svg" |> shrinkLines width)
     )
