@@ -25,6 +25,7 @@ A Web application for determining the amount of "otoshidama", a gift of money gi
 - The communications charge required for use of this site will be borne by the user.
 - The creator is not responsible for any damage caused by computer viruses, data loss, or any other disadvantages caused by usinfg this site.
 - You can use the source code, but please keep the copyright notice and license notice when redistributing.
+- This is a joke app. It does not pay out amounts determined by the roulette.
 
 ## Known Issue
 
