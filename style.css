@@ -5,6 +5,17 @@
   This software is licensed under the MIT License.
   https://github.com/taidalog/otoshidama-roulette/blob/main/LICENSE
 */
+:root {
+    --red: #ab173a;
+    --background-color: #ffffff;
+    --text-color: #444444;
+    --pale-color: #888888;
+    --a-color: #447f88;
+    --a-visited-color: #754488;
+    --mizuhiki-gray: #968a8a;
+    --unfixed-text-color: #999999;
+}
+
 html,
 body {
     height: 100%;
@@ -14,7 +25,8 @@ body {
 html {
     font-family: 'Noto Sans JP', sans-serif;
     font-weight: 400;
-    color: #444444;
+    color: var(--text-color);
+    background-color: var(--background-color);
 }
 
 body {
@@ -24,7 +36,7 @@ body {
 }
 
 h1 {
-    color: #ab173a;
+    color: var(--red);
     font-family: 'Zen Kurenaido', sans-serif;
     margin: 0;
 }
@@ -80,7 +92,7 @@ output>span.radix {
 }
 
 output>span:not(.fixed) {
-    color: #999999;
+    color: var(--unfixed-text-color);
 }
 
 div.button-container {
@@ -115,27 +127,29 @@ div.lines>svg>g>polyline {
 }
 
 div.lines.left>svg>g>polyline {
-    stroke: #968a8a;
+    stroke: var(--mizuhiki-gray);
 }
 
 div.lines.right>svg>g>polyline {
-    stroke: #ab173a;
+    stroke: var(--red);
 }
 
 div.message {
+    color: var(--text-color);
     font-family: "Yuji Syuku", serif;
     font-size: 2.5rem;
     text-align: center;
 }
 
 div.result {
+    color: var(--text-color);
     font-family: "Yuji Syuku", serif;
     font-size: 2.5rem;
     text-align: center;
 }
 
 footer {
-    color: #888888;
+    color: var(--pale-color);
     width: 90%;
     margin: 20px auto;
     margin-top: 40px;
@@ -146,12 +160,12 @@ footer {
 }
 
 footer a {
-    color: #447f88;
+    color: var(--a-color);
     text-decoration: none;
 }
 
 footer a:visited {
-    color: #754488;
+    color: var(--a-visited-color);
 }
 
 /* @media (max-width: 799px) {
@@ -187,8 +201,8 @@ div.help-window {
 
 div.help-window.active {
     display: block;
-    background-color: #ffffff;
-    color: #444444;
+    background-color: var(--background-color);
+    color: var(--text-color);
     opacity: 0.95;
     width: fit-content;
     height: fit-content;
@@ -208,11 +222,11 @@ div.help-window.active {
 }
 
 div.help-window a {
-    color: #447f88;
+    color: var(--a-color);
 }
 
 div.help-window a:visited {
-    color: #754488;
+    color: var(--a-visited-color);
 }
 
 span.material-symbols-outlined:hover {
@@ -221,6 +235,6 @@ span.material-symbols-outlined:hover {
 }
 
 span.material-symbols-outlined.help-close:hover {
-    color: #ffffff;
-    background-color: #444444;
+    color: var(--background-color);
+    background-color: var(--text-color);
 }
