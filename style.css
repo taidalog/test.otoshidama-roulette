@@ -89,17 +89,18 @@ div.button-container {
 }
 
 button {
-    width: 100px;
-    height: 100px;
     background-color: transparent;
     background-image: url(image/ume-blossom.svg);
     background-size: 100%;
+    background-repeat: no-repeat;
     border: none;
     color: #ffffff;
     font-family: "Yuji Syuku", serif;
     font-weight: 400;
     font-style: normal;
-    font-size: 3rem;
+    font-size: max(3vw, 24px);
+    width: max(6.25vw, 60px);
+    height: max(6.25vw, 60px);
     cursor: pointer;
 }
 
