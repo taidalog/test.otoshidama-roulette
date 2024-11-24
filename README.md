@@ -1,4 +1,4 @@
-# otoshidama-radix
+# otoshidama-roulette
 
 Version 0.2.0
 
@@ -12,7 +12,7 @@ A Web application for determining the amount of "otoshidama", a gift of money gi
 
 ## Usage
 
-1. Visit [otoshidama-radix](https://taidalog.github.io/otoshidama-radix/).
+1. Visit [otoshidama-roulette](https://taidalog.github.io/otoshidama-roulette/).
 1. Click a button in the center of the page and the amount of "otoshidama" will be determined randomly displayed in a binary number, in a decimal number, or in a hexadecimal number.
 
 ## Recommended environment
@@ -32,7 +32,7 @@ A Web application for determining the amount of "otoshidama", a gift of money gi
 
 ## Release Notes
 
-[Releases on GitHub](https://github.com/taidalog/otoshidama-radix/releases)
+[Releases on GitHub](https://github.com/taidalog/otoshidama-roulette/releases)
 
 ## License
 

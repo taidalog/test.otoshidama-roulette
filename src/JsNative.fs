@@ -1,8 +1,8 @@
-// otoshidama-radix Version 0.2.0
-// https://github.com/taidalog/otoshidama-radix
+// otoshidama-roulette Version 0.2.0
+// https://github.com/taidalog/otoshidama-roulette
 // Copyright (c) 2023-2024 taidalog
 // This software is licensed under the MIT License.
-// https://github.com/taidalog/otoshidama-radix/blob/main/LICENSE
+// https://github.com/taidalog/otoshidama-roulette/blob/main/LICENSE
 namespace OtoshidamaRadix
 
 open Fable.Core
