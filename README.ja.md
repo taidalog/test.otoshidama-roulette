@@ -1,6 +1,6 @@
-# otoshidama-radix
+# otoshidama-roulette
 
-Version 0.2.0
+Version 0.3.0
 
 [English README](README.md)
 
@@ -12,7 +12,7 @@ Version 0.2.0
 
 ## 使い方
 
-1. [otoshidama-radix](https://taidalog.github.io/otoshidama-radix/) にアクセスしてください。
+1. [otoshidama-roulette](https://taidalog.github.io/otoshidama-roulette/) にアクセスしてください。
 1. 画面中央のボタンをクリックすると、お年玉の金額がランダムに、2 進法または 10 進法、16 進法で表示されます。
 
 ## 推奨環境
@@ -25,6 +25,7 @@ Version 0.2.0
 - 利用に必要な通信料等は利用者の負担となります。
 - 当サイトを利用したことにより、コンピュータウィルス等による被害やデータの損失、その他いかなる不利益が生じた場合も、作成者は一切の責任を負いません。
 - ソースコードの利用は可能ですが、再頒布時には著作権表示とライセンス表示を消さずに残しておいてください。
+- これはジョークアプリです。ルーレットによって決定した金額をお支払いするものではありません。
 
 ## 既知の問題
 
@@ -32,7 +33,7 @@ Version 0.2.0
 
 ## リリースノート
 
-[Releases on GitHub](https://github.com/taidalog/otoshidama-radix/releases)
+[Releases on GitHub](https://github.com/taidalog/otoshidama-roulette/releases)
 
 ## License
 

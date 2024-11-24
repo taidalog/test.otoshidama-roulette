@@ -1,17 +1,17 @@
 <!--
-  otoshidama-radix Version 0.2.0
-  https://github.com/taidalog/otoshidama-radix
+  otoshidama-roulette Version 0.3.0
+  https://github.com/taidalog/otoshidama-roulette
   Copyright (c) 2023-2024 taidalog
   This software is licensed under the MIT License.
-  https://github.com/taidalog/otoshidama-radix/blob/main/LICENSE
+  https://github.com/taidalog/otoshidama-roulette/blob/main/LICENSE
 -->
 <!doctype html>
 <html lang="ja">
 
 <head>
-    <title>otoshidama-radix</title>
+    <title>otoshidama-roulette</title>
     <meta http-equiv='Content-Type' content='text/html; charset=utf-8'>
-    <meta name="description" content="otoshidama-radix">
+    <meta name="description" content="otoshidama-roulette">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- favicon -->
     <!-- OGP -->
@@ -24,7 +24,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Yuji+Syuku&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Zen+Kurenaido&display=&text=otoshidama-radix">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Zen+Kurenaido&display=&text=otoshidama-roulette">
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
     <!-- Google tag (gtag.js) -->
@@ -35,7 +36,7 @@
 <body>
     <header>
         <div>
-            <h1 translate="no">otoshidama-radix</h1>
+            <h1 translate="no">otoshidama-roulette</h1>
         </div>
         <div>
             <span id="helpButton" class="material-symbols-outlined help-button" translate="no">
@@ -44,6 +45,22 @@
         </div>
     </header>
     <main>
+        <audio id="koto" preload="auto">
+            <source src="audio/koto.mp3" type="audio/mp3"><!-- © 2013-2023 効果音ラボ -->
+        </audio>
+
+        <audio id="kodutsumi" preload="auto">
+            <source src="audio/kodutsumi.mp3" type="audio/mp3"><!-- © 2013-2023 効果音ラボ -->
+        </audio>
+
+        <audio id="hyoushigi" preload="auto">
+            <source src="audio/hyoushigi.mp3" type="audio/mp3"><!-- © 2013-2023 効果音ラボ -->
+        </audio>
+
+        <audio id="shakuhachi" preload="auto">
+            <source src="audio/shakuhachi.mp3" type="audio/mp3"><!-- © 2013-2023 効果音ラボ -->
+        </audio>
+
         <output id="outputArea" class="output-area">
             <span id="digit11"></span>
             <span id="digit10"></span>
@@ -60,8 +77,13 @@
         </output>
 
         <div class="button-container">
+            <div id="linesLeft" class="lines left"></div>
             <button id="button"></button>
+            <div id="linesRight" class="lines right"></div>
         </div>
+
+        <div id="message" class="message"></div>
+        <div id="result" class="result"></div>
 
         <div id="helpWindow" class="help-window">
             <div class="help-close-outer">
@@ -69,7 +91,30 @@
                     close
                 </span>
             </div>
-            <p><span translate="no">otoshidama-radix</span></p>
+            <section>
+                <h2 translate="no">otoshidama-roulette</h2>
+                <p>
+                    0と1を回してお年玉の金額を決めるルーレットです。<br>
+                    0と1を全て止めた後、「基数」を止めることで金額が確定します。
+                </p>
+                <p>
+                    これはジョークアプリです。ルーレットによって出た金額をお支払いするものではありません。
+                </p>
+            </section>
+            <section>
+                <h2>基数とは</h2>
+                <p>
+                    ルーレットの一番右の、「₍₂₎」や「₍₁₀₎」、「₍₁₆₎」を「基数」と呼びます。<br>
+                    基数が₍₂₎なら2進法、₍₁₀₎なら10進法、₍₁₆₎なら16進法です。<br>
+                    この基数によって、ルーレットで止めた数の大きさが変わります。
+                </p>
+                <p>
+                    たとえば「110」という数の場合、<br>
+                    10進法として扱うとそのまま「110(百十)」ですが、<br>
+                    2進法として扱うと10進法の「6」に相当し、<br>
+                    16進法として扱うと10進法の「272」に相当します。
+                </p>
+            </section>
         </div>
 
         <div id="informationPolicyWindow" class="help-window">
@@ -109,14 +154,13 @@
     <footer>
         <small translate="no">&copy; 2023-2024 <a href="https://taidalog.github.io/">taidalog</a></small>
         <small translate="no">
-            <a href="https://github.com/taidalog/otoshidama-radix/releases">Version 0.2.0</a></small>
-        <small translate="no"><a href="https://github.com/taidalog/otoshidama-radix/blob/main/README.ja.md"
-                target="_blank">READ
-                ME</a></small>
+            <a href="https://github.com/taidalog/otoshidama-roulette/releases">Version 0.3.0</a></small>
+        <small translate="no"><a href="https://github.com/taidalog/otoshidama-roulette/blob/main/README.ja.md"
+                target="_blank">README</a></small>
         <small><a href="#" id="informationPolicyLink">情報の外部送信について</a></small>
         <small><a href="https://odaibako.net/u/taidalog">お題箱</a></small>
         <small translate="no">
-            <a href="https://github.com/taidalog/otoshidama-radix">Repository on GitHub</a></small>
+            <a href="https://github.com/taidalog/otoshidama-roulette">Repository on GitHub</a></small>
         <small>Powered by <a id="footerFSharp" href="https://fsharp.org/" translate="no">F#</a>
             and <a id="footerFable" href="https://fable.io" translate="no">Fable</a>.
             Thank you!</small>

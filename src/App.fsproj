@@ -17,6 +17,7 @@
     <PackageReference Include="Fable.Browser.Dom" Version="2.18.0" />
     <PackageReference Include="Fable.Core" Version="4.3.0" />
     <PackageReference Include="Fermata" Version="1.0.0" />
+    <PackageReference Include="Fermata.RadixConversion" Version="1.1.0" />
   </ItemGroup>
 
 </Project>

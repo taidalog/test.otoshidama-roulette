@@ -1,10 +1,21 @@
 /*
-  otoshidama-radix 0.1.0
-  https://github.com/taidalog/otoshidama-radix
+  otoshidama-roulette Version 0.3.0
+  https://github.com/taidalog/otoshidama-roulette
   Copyright (c) 2023-2024 taidalog
   This software is licensed under the MIT License.
-  https://github.com/taidalog/otoshidama-radix/blob/main/LICENSE
+  https://github.com/taidalog/otoshidama-roulette/blob/main/LICENSE
 */
+:root {
+    --red: #ab173a;
+    --background-color: #ffffff;
+    --text-color: #444444;
+    --pale-color: #888888;
+    --a-color: #447f88;
+    --a-visited-color: #754488;
+    --mizuhiki-gray: #968a8a;
+    --unfixed-text-color: #999999;
+}
+
 html,
 body {
     height: 100%;
@@ -14,16 +25,18 @@ body {
 html {
     font-family: 'Noto Sans JP', sans-serif;
     font-weight: 400;
-    color: #444444;
+    color: var(--text-color);
+    background-color: var(--background-color);
 }
 
 body {
     display: flex;
     flex-direction: column;
+    background-image: url(image/checker.svg);
 }
 
 h1 {
-    color: #65a2ac;
+    color: var(--red);
     font-family: 'Zen Kurenaido', sans-serif;
     margin: 0;
 }
@@ -38,6 +51,10 @@ main,
 footer {
     width: 90%;
     margin: 0 auto;
+}
+
+main {
+    width: 100%;
 }
 
 header {
@@ -75,7 +92,7 @@ output>span.radix {
 }
 
 output>span:not(.fixed) {
-    color: #999999;
+    color: var(--unfixed-text-color);
 }
 
 div.button-container {
@@ -83,8 +100,56 @@ div.button-container {
     justify-content: center;
 }
 
+button {
+    background-color: transparent;
+    background-image: url(image/ume-blossom.svg);
+    background-size: 100%;
+    background-repeat: no-repeat;
+    border: none;
+    color: #ffffff;
+    font-family: "Yuji Syuku", serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: max(3vw, 24px);
+    width: max(6.25vw, 60px);
+    height: max(6.25vw, 60px);
+    cursor: pointer;
+}
+
+div.lines {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+div.lines>svg>g>polyline {
+    stroke-width: 2.5;
+}
+
+div.lines.left>svg>g>polyline {
+    stroke: var(--mizuhiki-gray);
+}
+
+div.lines.right>svg>g>polyline {
+    stroke: var(--red);
+}
+
+div.message {
+    color: var(--text-color);
+    font-family: "Yuji Syuku", serif;
+    font-size: 2.5rem;
+    text-align: center;
+}
+
+div.result {
+    color: var(--text-color);
+    font-family: "Yuji Syuku", serif;
+    font-size: 2.5rem;
+    text-align: center;
+}
+
 footer {
-    color: #888888;
+    color: var(--pale-color);
     width: 90%;
     margin: 20px auto;
     margin-top: 40px;
@@ -95,12 +160,12 @@ footer {
 }
 
 footer a {
-    color: #447f88;
+    color: var(--a-color);
     text-decoration: none;
 }
 
 footer a:visited {
-    color: #754488;
+    color: var(--a-visited-color);
 }
 
 /* @media (max-width: 799px) {
@@ -136,8 +201,8 @@ div.help-window {
 
 div.help-window.active {
     display: block;
-    background-color: #ffffff;
-    color: #444444;
+    background-color: var(--background-color);
+    color: var(--text-color);
     opacity: 0.95;
     width: fit-content;
     height: fit-content;
@@ -150,18 +215,18 @@ div.help-window.active {
     bottom: 0;
     right: 0;
     margin: auto;
-    padding: 0.5rem 2rem 2rem 2rem;
+    padding: 0.5rem 2rem;
     box-shadow: 0px 0px 5px 1px #999;
     overflow-y: auto;
     scrollbar-width: thin;
 }
 
 div.help-window a {
-    color: #447f88;
+    color: var(--a-color);
 }
 
 div.help-window a:visited {
-    color: #754488;
+    color: var(--a-visited-color);
 }
 
 span.material-symbols-outlined:hover {
@@ -170,6 +235,6 @@ span.material-symbols-outlined:hover {
 }
 
 span.material-symbols-outlined.help-close:hover {
-    color: #ffffff;
-    background-color: #444444;
+    color: var(--background-color);
+    background-color: var(--text-color);
 }
