@@ -1,5 +1,5 @@
 <!--
-  otoshidama-roulette Version 0.2.0
+  otoshidama-roulette Version 0.3.0
   https://github.com/taidalog/otoshidama-roulette
   Copyright (c) 2023-2024 taidalog
   This software is licensed under the MIT License.
@@ -29,8 +29,8 @@
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
     <!-- Google tag (gtag.js) -->
-  <script type="module" crossorigin src="/otoshidama-roulette/assets/index-CZJ8pf3B.js"></script>
-  <link rel="stylesheet" crossorigin href="/otoshidama-roulette/assets/index-ChP-TK8j.css">
+  <script type="module" crossorigin src="/otoshidama-roulette/assets/index-46UWgXl3.js"></script>
+  <link rel="stylesheet" crossorigin href="/otoshidama-roulette/assets/index-CDMNn16e.css">
 </head>
 
 <body>
@@ -91,7 +91,30 @@
                     close
                 </span>
             </div>
-            <p><span translate="no">otoshidama-roulette</span></p>
+            <section>
+                <h2 translate="no">otoshidama-roulette</h2>
+                <p>
+                    0と1を回してお年玉の金額を決めるルーレットです。<br>
+                    0と1を全て止めた後、「基数」を止めることで金額が確定します。
+                </p>
+                <p>
+                    これはジョークアプリです。ルーレットによって出た金額をお支払いするものではありません。
+                </p>
+            </section>
+            <section>
+                <h2>基数とは</h2>
+                <p>
+                    ルーレットの一番右の、「₍₂₎」や「₍₁₀₎」、「₍₁₆₎」を「基数」と呼びます。<br>
+                    基数が₍₂₎なら2進法、₍₁₀₎なら10進法、₍₁₆₎なら16進法です。<br>
+                    この基数によって、ルーレットで止めた数の大きさが変わります。
+                </p>
+                <p>
+                    たとえば「110」という数の場合、<br>
+                    10進法として扱うとそのまま「110(百十)」ですが、<br>
+                    2進法として扱うと10進法の「6」に相当し、<br>
+                    16進法として扱うと10進法の「272」に相当します。
+                </p>
+            </section>
         </div>
 
         <div id="informationPolicyWindow" class="help-window">
@@ -131,10 +154,9 @@
     <footer>
         <small translate="no">&copy; 2023-2024 <a href="https://taidalog.github.io/">taidalog</a></small>
         <small translate="no">
-            <a href="https://github.com/taidalog/otoshidama-roulette/releases">Version 0.2.0</a></small>
+            <a href="https://github.com/taidalog/otoshidama-roulette/releases">Version 0.3.0</a></small>
         <small translate="no"><a href="https://github.com/taidalog/otoshidama-roulette/blob/main/README.ja.md"
-                target="_blank">READ
-                ME</a></small>
+                target="_blank">README</a></small>
         <small><a href="#" id="informationPolicyLink">情報の外部送信について</a></small>
         <small><a href="https://odaibako.net/u/taidalog">お題箱</a></small>
         <small translate="no">
