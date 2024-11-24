@@ -6,6 +6,7 @@
 namespace OtoshidamaRadix
 
 open System
+open System.Diagnostics
 open Browser.Dom
 open Browser.Types
 open Fable.Core
@@ -57,8 +58,6 @@ module App =
             let button = document.getElementById "button" :?> HTMLButtonElement
             button.innerText <- "始"
 
-            let width = (window.screen.width - 100.) / 2.
-
             let linesLeft = document.getElementById "linesLeft" :?> HTMLDivElement
             let svgLeft = document.createElementNS ("http://www.w3.org/2000/svg", "svg")
             let gLeft = document.createElementNS ("http://www.w3.org/2000/svg", "g")
@@ -68,6 +67,9 @@ module App =
 
             svgLeft.appendChild gLeft |> ignore
             linesLeft.appendChild svgLeft |> ignore
+
+            let width = (window.innerWidth - (max (window.innerWidth * 0.0625) 60.)) / 2. // window.screen.width - max(6.25vw, 60px) / 2
+            Debug.WriteLine $"svg width = %f{width}"
 
             shrinkLines width svgLeft
 
@@ -110,7 +112,8 @@ module App =
     window.addEventListener (
         "resize",
         (fun _ ->
-            let width = (window.screen.width - 100.) / 2.
+            let width = (window.innerWidth - (max (window.innerWidth * 0.0625) 60.)) / 2. // window.screen.width - max(6.25vw, 60px) / 2
+            Debug.WriteLine $"svg width = %f{width}"
             (document.getElementById "linesLeft").querySelector "svg" |> shrinkLines width
             (document.getElementById "linesRight").querySelector "svg" |> shrinkLines width)
     )
