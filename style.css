@@ -78,7 +78,7 @@ output.output-area {
     font-family: "Yuji Syuku", serif;
     font-weight: 400;
     font-style: normal;
-    font-size: 8vw;
+    font-size: max(8vw, 44px);
     display: flex;
     justify-content: center;
     gap: 0;
