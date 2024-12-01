@@ -138,6 +138,7 @@ div.message {
     color: var(--text-color);
     font-family: "Yuji Syuku", serif;
     font-size: 2.5rem;
+    font-size: min(8vw, 40px);
     text-align: center;
 }
 
@@ -145,6 +146,7 @@ div.result {
     color: var(--text-color);
     font-family: "Yuji Syuku", serif;
     font-size: 2.5rem;
+    font-size: min(9vw, 40px);
     text-align: center;
 }
 
