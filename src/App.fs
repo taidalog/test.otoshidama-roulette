@@ -1,4 +1,4 @@
-﻿// otoshidama-roulettettette Version 0.3.0
+﻿// otoshidama-roulettettette Version 0.3.1
 // https://github.com/taidalog/otoshidama-roulette
 // Copyright (c) 2023-2024 taidalog
 // This software is licensed under the MIT License.
