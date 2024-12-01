@@ -151,8 +151,7 @@ div.result {
 footer {
     color: var(--pale-color);
     width: 90%;
-    margin: 20px auto;
-    margin-top: 40px;
+    margin: 40px auto 20px;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -168,17 +167,12 @@ footer a:visited {
     color: var(--a-visited-color);
 }
 
-/* @media (max-width: 799px) {
+@media (max-width: 799px) {
     footer {
-        margin-top: 20px;
-        flex-direction: column;
+        margin: 1rem auto 0.5rem;
+        gap: 0.25rem 1.5rem;
     }
-
-    footer>small {
-        display: inline-block;
-        text-align: center;
-    }
-} */
+}
 
 /*
     help window
