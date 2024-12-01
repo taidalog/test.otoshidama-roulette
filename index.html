@@ -35,7 +35,11 @@
         function gtag() { dataLayer.push(arguments); }
         gtag('js', new Date());
 
-        gtag('config', 'G-ZPWS7MCHE1');
+        if (window.location.hostname === "localhost") {
+            gtag('config', 'G-ZPWS7MCHE1', { 'debug_mode': true });
+        } else {
+            gtag('config', 'G-ZPWS7MCHE1');
+        }
     </script>
     <link rel="stylesheet" href="style.css">
     <script type="module" src="src/App.fs.js"></script>
