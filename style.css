@@ -110,7 +110,7 @@ output.output-area {
 output>span.radix {
     display: flex;
     align-items: flex-end;
-    font-size: 4vw;
+    font-size: max(4vw, 22px);
     width: 2ch;
 }
 
