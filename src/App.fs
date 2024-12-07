@@ -53,7 +53,7 @@ module App =
     window.addEventListener (
         "DOMContentLoaded",
         (fun _ ->
-            Roulette.display "00000000000" "₍₂₎"
+            Roulette.display "00000000000" "(2)"
 
             let button = document.getElementById "button" :?> HTMLButtonElement
             button.innerText <- "始"
