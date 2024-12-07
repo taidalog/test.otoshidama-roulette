@@ -9,11 +9,28 @@
     --red: #ab173a;
     --background-color: #ffffff;
     --text-color: #444444;
+    --h2-color: #767676;
     --pale-color: #888888;
     --a-color: #447f88;
     --a-visited-color: #754488;
+    --help-window-shadow: #999999;
     --mizuhiki-gray: #968a8a;
     --unfixed-text-color: #999999;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --red: #f197ac;
+        --background-color: #444444;
+        --text-color: #ffffff;
+        --h2-color: #b1b1b1;
+        --pale-color: #9c9c9c;
+        --a-color: #58a5b0;
+        --a-visited-color: #bb6cd9;
+        --help-window-shadow: #8b8b8b;
+        --mizuhiki-gray: #9f9595;
+        --unfixed-text-color: #8b8b8b;
+    }
 }
 
 html,
@@ -35,6 +52,12 @@ body {
     background-image: url(image/checker.svg);
 }
 
+@media (prefers-color-scheme: dark) {
+    body {
+        background-image: url(image/checker-dark.svg);
+    }
+}
+
 h1 {
     color: var(--red);
     font-family: 'Zen Kurenaido', sans-serif;
@@ -43,7 +66,7 @@ h1 {
 
 h2 {
     margin: 0;
-    color: lightslategray;
+    color: var(--h2-color);
 }
 
 header,
@@ -106,7 +129,7 @@ button {
     background-size: 100%;
     background-repeat: no-repeat;
     border: none;
-    color: #ffffff;
+    color: var(--background-color);
     font-family: "Yuji Syuku", serif;
     font-weight: 400;
     font-style: normal;
@@ -114,6 +137,12 @@ button {
     width: max(6.25vw, 60px);
     height: max(6.25vw, 60px);
     cursor: pointer;
+}
+
+@media (prefers-color-scheme: dark) {
+    button {
+        background-image: url(image/ume-blossom-dark.svg);
+    }
 }
 
 div.lines {
@@ -212,9 +241,15 @@ div.help-window.active {
     right: 0;
     margin: auto;
     padding: 0.5rem 2rem;
-    box-shadow: 0px 0px 5px 1px #999;
+    box-shadow: 0px 0px 5px 1px var(--help-window-shadow);
     overflow-y: auto;
     scrollbar-width: thin;
+}
+
+@media (prefers-color-scheme: dark) {
+    div.help-window.active {
+        opacity: 0.975;
+    }
 }
 
 div.help-window a {
