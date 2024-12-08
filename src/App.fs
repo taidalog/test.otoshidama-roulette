@@ -1,4 +1,4 @@
-﻿// otoshidama-roulettettette Version 0.3.2
+﻿// otoshidama-roulettettette Version 0.4.0
 // https://github.com/taidalog/otoshidama-roulette
 // Copyright (c) 2023-2024 taidalog
 // This software is licensed under the MIT License.
@@ -53,7 +53,7 @@ module App =
     window.addEventListener (
         "DOMContentLoaded",
         (fun _ ->
-            Roulette.display "00000000000" "₍₂₎"
+            Roulette.display "00000000000" "(2)"
 
             let button = document.getElementById "button" :?> HTMLButtonElement
             button.innerText <- "始"

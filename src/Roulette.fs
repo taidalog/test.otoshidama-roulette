@@ -1,4 +1,4 @@
-// otoshidama-roulette Version 0.3.2
+// otoshidama-roulette Version 0.4.0
 // https://github.com/taidalog/otoshidama-roulette
 // Copyright (c) 2023-2024 taidalog
 // This software is licensed under the MIT License.
@@ -18,7 +18,7 @@ open RunningState
 
 module Roulette =
     let randomRadix () : string =
-        List.item (Random.lessThan 3) [ "₍₂₎"; "₍₁₀₎"; "₍₁₆₎" ]
+        List.item (Random.lessThan 3) [ "(2)"; "(10)"; "(16)" ]
 
     let randomByte () : string = Random.lessThan 2 |> string
 
@@ -38,9 +38,9 @@ module Roulette =
 
     let radixToString (radix: Radix) : string =
         match radix with
-        | Radix.Bin -> "₍₂₎"
-        | Radix.Dec -> "₍₁₀₎"
-        | Radix.Hex -> "₍₁₆₎"
+        | Radix.Bin -> "(2)"
+        | Radix.Dec -> "(10)"
+        | Radix.Hex -> "(16)"
 
     let randomRadix' () : Radix =
         List.item (Random.lessThan 3) [ Radix.Bin; Radix.Dec; Radix.Hex ]
@@ -138,11 +138,11 @@ module Roulette =
                     button.onclick <- fun _ -> toggle RunningState.Stopping
                     button.innerText <- "始"
 
-                    result.innerText <-
-                        if radix = "₍₁₀₎" then
-                            $"%d{amount}₍₁₀₎"
+                    result.innerHTML <-
+                        if radix = "(10)" then
+                            $"%d{amount}<sub>(10)</sub>"
                         else
-                            $"%s{bin}%s{radix} = %d{amount}₍₁₀₎"
+                            $"%s{bin}<sub>%s{radix}</sub> = %d{amount}<sub>(10)</sub>"
 
                     let audio = document.getElementById "shakuhachi" :?> HTMLAudioElement
                     audio.currentTime <- 0
