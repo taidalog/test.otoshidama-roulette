@@ -36,7 +36,7 @@
         function gtag() { dataLayer.push(arguments); }
         gtag('js', new Date());
 
-        if (window.location.hostname === "localhost") {
+        if (window.location.hostname === "localhost" || window.location.pathname.startsWith("/taidalog/test.")) {
             gtag('config', 'G-ZPWS7MCHE1', { 'debug_mode': true });
         } else {
             gtag('config', 'G-ZPWS7MCHE1');
