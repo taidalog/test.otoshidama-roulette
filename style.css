@@ -129,6 +129,8 @@ button {
     background-size: 100%;
     background-repeat: no-repeat;
     border: none;
+    appearance: none;
+    -webkit-appearance: none;
     color: var(--background-color);
     font-family: "Yuji Syuku", serif;
     font-weight: 400;
