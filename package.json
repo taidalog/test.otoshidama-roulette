@@ -2,6 +2,7 @@
   "name": "otoshidama-roulette",
   "version": "1.0.0",
   "private": true,
+  "type": "module",
   "main": "index.js",
   "directories": {
     "test": "tests"
