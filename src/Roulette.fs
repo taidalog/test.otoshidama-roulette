@@ -108,13 +108,17 @@ module Roulette =
                 |> List.map2 (fun g e -> setInterval (fun _ -> turn g e) 100) generators
 
             let message = document.getElementById "message"
+            let button = document.getElementById "button" :?> HTMLButtonElement
 
             if shouldGuaranteeDec radix then
                 message.innerText <- "10進法確定!"
+                button.className <- "bamboo-leaves"
             else if shouldGuaranteeHex radix then
                 message.innerText <- "16進法確定!"
+                button.className <- "pine-leaves"
             else
                 message.innerText <- "お年玉ルーレット！"
+                button.className <- ""
 
             (document.getElementById "button" :?> HTMLButtonElement).innerText <- "止"
             RunningState.Running(intervalIds, values, ids, v, b, radixToString radix)
@@ -151,7 +155,11 @@ module Roulette =
                 match t with
                 | [] ->
                     button.onclick <- fun _ -> toggle RunningState.Stopping
+                    button.className <- ""
                     button.innerText <- "始"
+
+                    let message = document.getElementById "message"
+                    message.innerText <- "お年玉ルーレット！"
 
                     result.innerHTML <-
                         if radix = "(10)" then
