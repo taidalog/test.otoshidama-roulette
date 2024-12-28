@@ -45,6 +45,12 @@ module Roulette =
     let randomRadix' () : Radix =
         List.item (Random.lessThan 3) [ Radix.Bin; Radix.Dec; Radix.Hex ]
 
+    let shouldGuaranteeDec (radix: Radix) : bool =
+        radix = Radix.Dec && Random.nextDouble () < 0.03
+
+    let shouldGuaranteeHex (radix: Radix) : bool =
+        radix = Radix.Hex && Random.nextDouble () < 0.03
+
     let binaryExpression (radix: Radix) : string =
         match radix with
         | Radix.Bin -> DateTime.Now.Year + 1
@@ -100,6 +106,15 @@ module Roulette =
                 ids
                 |> List.map (fun x -> document.getElementById x)
                 |> List.map2 (fun g e -> setInterval (fun _ -> turn g e) 100) generators
+
+            let message = document.getElementById "message"
+
+            if shouldGuaranteeDec radix then
+                message.innerText <- "10進法確定!"
+            else if shouldGuaranteeHex radix then
+                message.innerText <- "16進法確定!"
+            else
+                message.innerText <- "お年玉ルーレット！"
 
             (document.getElementById "button" :?> HTMLButtonElement).innerText <- "止"
             RunningState.Running(intervalIds, values, ids, v, b, radixToString radix)
