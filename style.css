@@ -141,6 +141,8 @@ button {
     width: max(6.25vw, 60px);
     height: max(6.25vw, 60px);
     cursor: pointer;
+    touch-action: manipulation;
+    -ms-touch-action: manipulation;
 }
 
 button.pine-leaves {
@@ -155,6 +157,14 @@ button.bamboo-leaves {
 @media (prefers-color-scheme: dark) {
     button {
         background-image: url(image/ume-blossom-dark.svg);
+    }
+
+    button.pine-leaves {
+        background-image: url(image/pine-leaves-dark.svg);
+    }
+
+    button.bamboo-leaves {
+        background-image: url(image/bamboo-leaves-dark.svg);
     }
 }
 
