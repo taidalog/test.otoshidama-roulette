@@ -141,6 +141,8 @@ button {
     width: max(6.25vw, 60px);
     height: max(6.25vw, 60px);
     cursor: pointer;
+    touch-action: manipulation;
+    -ms-touch-action: manipulation;
 }
 
 button.pine-leaves {
